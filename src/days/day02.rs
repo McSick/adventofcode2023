@@ -12,7 +12,6 @@ pub fn solve() -> SolutionPair {
         let parsed = gametext.split(":").collect::<Vec<&str>>();
         let mut game = Game::new(parsed[0]);
         let draws = parsed[1].split(";").collect::<Vec<&str>>();
-        //3 blue, 4 red
         for draw in draws {
             let colors = draw.split(",").collect::<Vec<&str>>();
             let mut map = HashMap::new();
