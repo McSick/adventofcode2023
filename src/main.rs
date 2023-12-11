@@ -17,7 +17,7 @@ fn main() {
     if args.len() < 2 {
         panic!("Please provide the day(s) to run as a command-line argument.");
     }
-
+    println!("args: {:?}", args);
     let days: Vec<u8> = args[1..].iter()
         .map(|x| x.parse().unwrap_or_else(|v| panic!("Not a valid day: {}", v)))
         .collect();
