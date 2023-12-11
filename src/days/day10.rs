@@ -37,7 +37,6 @@ fn find_inside_space(map: Vec<Vec<Pipe>>) -> usize {
     let empty_row = vec![Pipe::Empty; padded_map[0].len()];
     padded_map.insert(0, empty_row.clone());
     padded_map.push(empty_row.clone());
-    //padded_map.iter().for_each(|row| {row.iter().for_each(|pipe| if pipe == &Pipe::Empty {print!(".")} else {print!("I")}); println!()});
     //tiled map
     let mut tiled_map = vec![vec![Pipe::Empty; padded_map[0].len() * 3]; padded_map.len() * 3];
     let mut i = 0;
@@ -55,10 +54,7 @@ fn find_inside_space(map: Vec<Vec<Pipe>>) -> usize {
         i += 3;
 
     }
-
-   tiled_map.iter().for_each(|row| {row.iter().for_each(|pipe| if pipe == &Pipe::Empty {print!(" ")} else {print!("I")}); println!()});
     fill(0,0, &mut tiled_map);
-    //tiled_map.iter().for_each(|row| {row.iter().for_each(|pipe| if pipe == &Pipe::Empty {print!(".")} else {print!("I")}); println!()});
     let mut i = 0;
     while i < tiled_map.len() {
         let mut j = 0;
@@ -218,7 +214,6 @@ impl Landscape {
                 break;
             }
         }
-        //empty_map.iter().for_each(|row| println!("{:?}", row));
         (distance / 2 + 1, empty_map)
         
     }
@@ -232,11 +227,6 @@ impl Landscape {
 
     }
  }
-// struct Movement {
-//     direction: Direction,
-//     pipe: Pipe
-
-// }
 #[derive(Debug,PartialEq,Clone,Copy, Hash)]
 enum Direction {
     North ,
