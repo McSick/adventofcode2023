@@ -28,6 +28,37 @@ fn find_shortest_distances(galaxy: &Galaxy ) -> Vec<u64> {
     distances
 
 }
+
+
+#[derive(Debug)]
+struct Galaxy {
+    map: Vec<Vec<Space>>,
+    galaxies: Vec<(usize, usize)>,
+    expand_rows: HashSet<usize>,
+    expand_cols: HashSet<usize>,
+    expansion_factor: u64,
+
+
+}
+impl Galaxy {
+    fn find_shortest_distance(&self, g1: (usize,usize),g2:(usize, usize)) -> u64 {
+
+        let lower_row = cmp::min(g1.0, g2.0);
+        let upper_row = cmp::max(g1.0, g2.0);
+        let lower_col = cmp::min(g1.1, g2.1);
+        let upper_col = cmp::max(g1.1, g2.1);
+
+        let dist = ((upper_row - lower_row) + (upper_col - lower_col)) as u64;
+
+        let rows:HashSet<usize> = HashSet::from_iter((lower_row..upper_row).collect::<Vec<usize>>());
+        let cols:HashSet<usize> = HashSet::from_iter((lower_col..upper_col).collect::<Vec<usize>>());
+        let expand_rows = rows.intersection(&self.expand_rows).count() as u64;
+        let expand_cols = cols.intersection(&self.expand_cols).count() as u64;
+
+        dist + expand_rows * (&self.expansion_factor-1) + expand_cols * (&self.expansion_factor-1)
+    }
+}
+
 fn expanding_places(rows: HashSet<usize>, cols: HashSet<usize>, grid: &mut Vec<Vec<Space>>) {
     for row in 0..grid.len() {
         for col in 0..grid[row].len() {
@@ -84,35 +115,6 @@ fn parse_input(input: String) -> Galaxy {
         expansion_factor: 2,
     }
 }
-#[derive(Debug)]
-struct Galaxy {
-    map: Vec<Vec<Space>>,
-    galaxies: Vec<(usize, usize)>,
-    expand_rows: HashSet<usize>,
-    expand_cols: HashSet<usize>,
-    expansion_factor: u64,
-
-
-}
-impl Galaxy {
-    fn find_shortest_distance(&self, g1: (usize,usize),g2:(usize, usize)) -> u64 {
-
-        let lower_row = cmp::min(g1.0, g2.0);
-        let upper_row = cmp::max(g1.0, g2.0);
-        let lower_col = cmp::min(g1.1, g2.1);
-        let upper_col = cmp::max(g1.1, g2.1);
-
-        let dist = ((upper_row - lower_row) + (upper_col - lower_col)) as u64;
-
-        let rows:HashSet<usize> = HashSet::from_iter((lower_row..upper_row).collect::<Vec<usize>>());
-        let cols:HashSet<usize> = HashSet::from_iter((lower_col..upper_col).collect::<Vec<usize>>());
-        let expand_rows = rows.intersection(&self.expand_rows).count() as u64;
-        let expand_cols = cols.intersection(&self.expand_cols).count() as u64;
-
-        dist + expand_rows * (&self.expansion_factor-1) + expand_cols * (&self.expansion_factor-1)
-    }
-}
-
 impl fmt::Display for Galaxy {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         for row in &self.map {
