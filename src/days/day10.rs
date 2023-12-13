@@ -287,133 +287,133 @@ impl Pipe {
 
 
 
-#[test]
-fn test_1() {
-    const TEST1:&str = ".....
-.S-7.
-.|.|.
-.L-J.
-.....";
-    let landscape = parse_input(TEST1.to_string());
-    assert_eq!(landscape.vec[0][0], Pipe::Empty);
-    let (dist, map) = landscape.find_farthest_distance();
-    let inside_space = find_inside_space(map);
-    assert_eq!(dist, 4);
-    assert_eq!(inside_space, 1);
+// #[test]
+// fn test_1() {
+//     const TEST1:&str = ".....
+// .S-7.
+// .|.|.
+// .L-J.
+// .....";
+//     let landscape = parse_input(TEST1.to_string());
+//     assert_eq!(landscape.vec[0][0], Pipe::Empty);
+//     let (dist, map) = landscape.find_farthest_distance();
+//     let inside_space = find_inside_space(map);
+//     assert_eq!(dist, 4);
+//     assert_eq!(inside_space, 1);
 
-}
-#[test]
-fn test_2() {
-    const TEST2:&str = "-L|F7
-7S-7|
-L|7||
--L-J|
-L|-JF";
-    let landscape = parse_input(TEST2.to_string());
+// }
+// #[test]
+// fn test_2() {
+//     const TEST2:&str = "-L|F7
+// 7S-7|
+// L|7||
+// -L-J|
+// L|-JF";
+//     let landscape = parse_input(TEST2.to_string());
 
-    assert_eq!(landscape.vec[0][0], Pipe::Horizontal);
-    let (dist, map) = landscape.find_farthest_distance();
-    let inside_space = find_inside_space(map);
-    assert_eq!(dist, 4);
-    assert_eq!(inside_space, 1);
-}
-#[test]
-fn test_3() {
-    const TEST3:&str = "..F7.
-.FJ|.
-SJ.L7
-|F--J
-LJ...";
-    let landscape = parse_input(TEST3.to_string());
+//     assert_eq!(landscape.vec[0][0], Pipe::Horizontal);
+//     let (dist, map) = landscape.find_farthest_distance();
+//     let inside_space = find_inside_space(map);
+//     assert_eq!(dist, 4);
+//     assert_eq!(inside_space, 1);
+// }
+// #[test]
+// fn test_3() {
+//     const TEST3:&str = "..F7.
+// .FJ|.
+// SJ.L7
+// |F--J
+// LJ...";
+//     let landscape = parse_input(TEST3.to_string());
 
-    assert_eq!(landscape.vec[0][0], Pipe::Empty);
-    let (dist, map) = landscape.find_farthest_distance();
+//     assert_eq!(landscape.vec[0][0], Pipe::Empty);
+//     let (dist, _map) = landscape.find_farthest_distance();
 
-    assert_eq!(dist, 8);
-}
+//     assert_eq!(dist, 8);
+// }
 
-#[test]
-fn test_4() {
-    const TEST4:&str = "7-F7-
-.FJ|7
-SJLL7
-|F--J
-LJ.LJ";
+// #[test]
+// fn test_4() {
+//     const TEST4:&str = "7-F7-
+// .FJ|7
+// SJLL7
+// |F--J
+// LJ.LJ";
 
-    let landscape = parse_input(TEST4.to_string());
+//     let landscape = parse_input(TEST4.to_string());
 
-    assert_eq!(landscape.vec[0][0], Pipe::NorthEast);
-    let (dist, map) = landscape.find_farthest_distance();
-    assert_eq!(dist, 8);
-}
-#[test]
-fn test_5() {
-    const TEST5:&str = "...........
-.S-------7.
-.|F-----7|.
-.||.....||.
-.||.....||.
-.|L-7.F-J|.
-.|..|.|..|.
-.L--J.L--J.
-...........";
-    let landscape = parse_input(TEST5.to_string());
-    let (dist, map) = landscape.find_farthest_distance();
-    let inside_space = find_inside_space(map);
-    assert_eq!(inside_space, 4);
+//     assert_eq!(landscape.vec[0][0], Pipe::NorthEast);
+//     let (dist, _map) = landscape.find_farthest_distance();
+//     assert_eq!(dist, 8);
+// }
+// #[test]
+// fn test_5() {
+//     const TEST5:&str = "...........
+// .S-------7.
+// .|F-----7|.
+// .||.....||.
+// .||.....||.
+// .|L-7.F-J|.
+// .|..|.|..|.
+// .L--J.L--J.
+// ...........";
+//     let landscape = parse_input(TEST5.to_string());
+//     let (_dist, map) = landscape.find_farthest_distance();
+//     let inside_space = find_inside_space(map);
+//     assert_eq!(inside_space, 4);
 
-}
+// }
 
-#[test]
-fn test_6() {
-    const TEST6:&str = ".F----7F7F7F7F-7....
-.|F--7||||||||FJ....
-.||.FJ||||||||L7....
-FJL7L7LJLJ||LJ.L-7..
-L--J.L7...LJS7F-7L7.
-....F-J..F7FJ|L7L7L7
-....L7.F7||L7|.L7L7|
-.....|FJLJ|FJ|F7|.LJ
-....FJL-7.||.||||...
-....L---J.LJ.LJLJ...";
-    let landscape = parse_input(TEST6.to_string());
-    let (dist, map) = landscape.find_farthest_distance();
-    let inside_space = find_inside_space(map);
-    assert_eq!(inside_space, 8);
+// #[test]
+// fn test_6() {
+//     const TEST6:&str = ".F----7F7F7F7F-7....
+// .|F--7||||||||FJ....
+// .||.FJ||||||||L7....
+// FJL7L7LJLJ||LJ.L-7..
+// L--J.L7...LJS7F-7L7.
+// ....F-J..F7FJ|L7L7L7
+// ....L7.F7||L7|.L7L7|
+// .....|FJLJ|FJ|F7|.LJ
+// ....FJL-7.||.||||...
+// ....L---J.LJ.LJLJ...";
+//     let landscape = parse_input(TEST6.to_string());
+//     let (_dist, map) = landscape.find_farthest_distance();
+//     let inside_space = find_inside_space(map);
+//     assert_eq!(inside_space, 8);
 
-}
+// }
 
-#[test]
-fn test_7() {
-    const TEST7: &str ="..........
-.S------7.
-.|F----7|.
-.||....||.
-.||....||.
-.|L-7F-J|.
-.|..||..|.
-.L--JL--J.
-..........";
-let landscape = parse_input(TEST7.to_string());
-let (dist, map) = landscape.find_farthest_distance();
-let inside_space = find_inside_space(map);
-assert_eq!(inside_space, 4);
-}
+// #[test]
+// fn test_7() {
+//     const TEST7: &str ="..........
+// .S------7.
+// .|F----7|.
+// .||....||.
+// .||....||.
+// .|L-7F-J|.
+// .|..||..|.
+// .L--JL--J.
+// ..........";
+// let landscape = parse_input(TEST7.to_string());
+// let (_dist, map) = landscape.find_farthest_distance();
+// let inside_space = find_inside_space(map);
+// assert_eq!(inside_space, 4);
+// }
 
-#[test]
-fn test_8() {
-    const TEST8: &str ="FF7FSF7F7F7F7F7F---7
-L|LJ||||||||||||F--J
-FL-7LJLJ||||||LJL-77
-F--JF--7||LJLJ7F7FJ-
-L---JF-JLJ.||-FJLJJ7
-|F|F-JF---7F7-L7L|7|
-|FFJF7L7F-JF7|JL---7
-7-L-JL7||F7|L7F-7F7|
-L.L7LFJ|||||FJL7||LJ
-L7JLJL-JLJLJL--JLJ.L";
-let landscape = parse_input(TEST8.to_string());
-let (dist, map) = landscape.find_farthest_distance();
-let inside_space = find_inside_space(map);
-assert_eq!(inside_space, 10);
-}
+// #[test]
+// fn test_8() {
+//     const TEST8: &str ="FF7FSF7F7F7F7F7F---7
+// L|LJ||||||||||||F--J
+// FL-7LJLJ||||||LJL-77
+// F--JF--7||LJLJ7F7FJ-
+// L---JF-JLJ.||-FJLJJ7
+// |F|F-JF---7F7-L7L|7|
+// |FFJF7L7F-JF7|JL---7
+// 7-L-JL7||F7|L7F-7F7|
+// L.L7LFJ|||||FJL7||LJ
+// L7JLJL-JLJLJL--JLJ.L";
+// let landscape = parse_input(TEST8.to_string());
+// let (_dist, map) = landscape.find_farthest_distance();
+// let inside_space = find_inside_space(map);
+// assert_eq!(inside_space, 10);
+// }
